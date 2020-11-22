@@ -8,4 +8,8 @@ Ejercicio que combina JDBC con la creación de ficheros pdf y XML de preparació
 
 * También falta añadir la ruta en Menu para los archivos PDF
 
+------------------------------------------------------------
+
+Enlace al libro:
+
 https://www.ra-ma.es/libro/programacion-java-jdbc-y-swing_108230/
