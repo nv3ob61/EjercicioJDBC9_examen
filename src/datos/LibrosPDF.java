@@ -29,9 +29,13 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class LibrosPDF {
 
-  public void generarPDF(List<Libro> listaLibros, 
-          ParametrosListado parametrosListadoPDF, 
-          String directorioCreacionPDFs) throws IOException {
+  //DIRECTORIO_PDF es la carpeta donde se generan los ficheros:        
+  //C:\\Users\\nv3ob61\\ficheros_libro\\
+  public static final String DIRECTORIO_PDF = //add folder
+
+
+  public void generarPDF(List<Libro> listaLibros,
+          ParametrosListado parametrosListadoPDF) throws IOException {
 
     try (PDDocument pDDocument = new PDDocument()) {
       Libro[] lineasPagina = new Libro[parametrosListadoPDF.getNumeroFilasPagina()];
@@ -54,26 +58,26 @@ public class LibrosPDF {
         escribirPagina(pDDocument, lineasPagina, numeroPagina++);
       }
 
-      String nombreArchivoPDF = directorioCreacionPDFs + "\\Listado_libros" 
+      String nombreArchivoPDF = DIRECTORIO_PDF + "\\Listado_libros"
               + new SimpleDateFormat("yyyyMMddHHmmss")
                       .format(new java.util.Date()) + ".pdf";
-      
+
       pDDocument.save(nombreArchivoPDF);
     } catch (Exception e) {
       System.out.println("VAYA CAGADA, NO?");
     }
   }
 
-  public void generarPDFid(Libro libro, String directorioCreacionPDFs) {
+  public void generarPDFid(Libro libro) {
     try (PDDocument pDDocument = new PDDocument()) {
 
       int numeroPagina = 1;
 
       escribirPaginaSimple(pDDocument, libro, numeroPagina++);
 
-      String nombreArchivoPDF = directorioCreacionPDFs + "\\libro_id" 
+      String nombreArchivoPDF = DIRECTORIO_PDF + "\\libro_id"
               + libro.getIdLibro() + ".pdf";
-      
+
       pDDocument.save(nombreArchivoPDF);
     } catch (Exception e) {
       System.out.println("VAYA CAGADA, NO?");
@@ -86,9 +90,9 @@ public class LibrosPDF {
     }
   }
 
-  private void escribirPagina(PDDocument pDDocument, 
+  private void escribirPagina(PDDocument pDDocument,
           Libro[] lineasPagina, int numeroPagina) throws IOException {
-    
+
     PDPage pDPage = new PDPage();
     pDDocument.addPage(pDPage);
     try (PDPageContentStream pDPageContentStream = new PDPageContentStream(pDDocument, pDPage)) {
@@ -98,18 +102,18 @@ public class LibrosPDF {
     }
   }
 
-  private void escribirPaginaSimple(PDDocument pDDocument, 
+  private void escribirPaginaSimple(PDDocument pDDocument,
           Libro libro, int numeroPagina) throws IOException {
-    
+
     PDPage pDPage = new PDPage();
     pDDocument.addPage(pDPage);
-    try (PDPageContentStream pDPageContentStream = 
-            new PDPageContentStream(pDDocument, pDPage)) {
-      
+    try (PDPageContentStream pDPageContentStream
+            = new PDPageContentStream(pDDocument, pDPage)) {
+
       escribirCabecera(pDPageContentStream);
       int contadorLineas = escribirCuerpoSimple(pDPageContentStream, libro);
       //anyadimos el +2 para que la linea del pie no salga tan pegada...
-      escribirPie(pDPageContentStream, numeroPagina, contadorLineas +2);
+      escribirPie(pDPageContentStream, numeroPagina, contadorLineas + 2);
     }
   }
 
@@ -146,9 +150,9 @@ public class LibrosPDF {
     return i;
   }
 
-  private int escribirCuerpoSimple(PDPageContentStream pDPageContentStream, 
+  private int escribirCuerpoSimple(PDPageContentStream pDPageContentStream,
           Libro lineasPagina) throws IOException {
-    
+
     int i = 1;
 
     if (lineasPagina != null) {
@@ -164,16 +168,16 @@ public class LibrosPDF {
     return i;
   }
 
-  private void escribirPie(PDPageContentStream pDPageContentStream, 
+  private void escribirPie(PDPageContentStream pDPageContentStream,
           int numeroPagina, int contadorLineas) throws IOException {
-    
+
     escribirLinea(pDPageContentStream, 30, 640 - (15 * (contadorLineas)), 580, 640 - (15 * (contadorLineas)));
     escribirTexto(pDPageContentStream, PDType1Font.TIMES_ROMAN, 8, 520, 625 - (15 * (contadorLineas)), "pág. " + numeroPagina);
   }
 
-  private void escribirTexto(PDPageContentStream pDPageContentStream, 
+  private void escribirTexto(PDPageContentStream pDPageContentStream,
           PDFont pdFont, float sizeFuente, float inicioH, float inicioV, String texto) throws IOException {
-    
+
     pDPageContentStream.beginText();
     pDPageContentStream.setFont(pdFont, sizeFuente);
     pDPageContentStream.newLineAtOffset(inicioH, inicioV);
@@ -181,9 +185,9 @@ public class LibrosPDF {
     pDPageContentStream.endText();
   }
 
-  private void escribirLinea(PDPageContentStream pDPageContentStream, 
+  private void escribirLinea(PDPageContentStream pDPageContentStream,
           float inicioH, float inicioV, float finH, float finV) throws IOException {
-    
+
     pDPageContentStream.moveTo(inicioH, inicioV);
     pDPageContentStream.lineTo(finH, finV);
     pDPageContentStream.stroke();

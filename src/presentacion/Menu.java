@@ -26,8 +26,6 @@ import java.util.List;
 import negocio.LibrosNegocio;
 
 public class Menu {
-  
-  public static final String DIRECTORIO_PDF =
 
   public void ejecutarMenu() {
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -168,7 +166,7 @@ public class Menu {
   private void generarPDFid(BufferedReader bf) throws Exception{
     Libro libro = consultarIdLibro(bf);
     if(libro != null){
-      new LibrosNegocio().generarPDFid(libro, DIRECTORIO_PDF);
+      new LibrosNegocio().generarPDFid(libro);
     }else {
       System.out.println("NO EXISTE UN LIBRO CON EL IDENTIFICADOR INTRODUCIDO");
     }
@@ -202,7 +200,7 @@ public class Menu {
     List<Libro> listaLibros = consultarListaTodos();
     ParametrosListado parametrosListado = new ParametrosListado();
     parametrosListado.setNumeroFilasPagina(10);
-    new LibrosNegocio().generarPDF(listaLibros, parametrosListado, DIRECTORIO_PDF);
+    new LibrosNegocio().generarPDF(listaLibros, parametrosListado);
   }
 
   private void generarXMLtodos() throws Exception {

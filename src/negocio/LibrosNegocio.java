@@ -78,13 +78,13 @@ public class LibrosNegocio {
   }
 
   public void generarPDF(List<Libro> listaLibros, 
-          ParametrosListado parametrosListado, String directorioCreacionPDFs) throws Exception {
+          ParametrosListado parametrosListado) throws Exception {
     
-    new LibrosPDF().generarPDF(listaLibros, parametrosListado, directorioCreacionPDFs);
+    new LibrosPDF().generarPDF(listaLibros, parametrosListado);
   }
     
-  public void generarPDFid(Libro libro, String directorioCreacionPDFs){
-    new LibrosPDF().generarPDFid(libro, directorioCreacionPDFs);
+  public void generarPDFid(Libro libro){
+    new LibrosPDF().generarPDFid(libro);
   }
   
   public void generarXMLtodos(List<Libro> listaLibros){

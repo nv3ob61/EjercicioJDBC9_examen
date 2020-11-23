@@ -29,7 +29,7 @@ public class ConexionBaseDatos {
       //    CONEXION Oracle
       Class.forName("oracle.jdbc.driver.OracleDriver");
       connection
-              = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", 
+              = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl",
                       "biblioteca", "cambiame");
 
     } catch (SQLException excepcion) {
