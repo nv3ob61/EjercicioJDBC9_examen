@@ -83,18 +83,6 @@ public class Menu {
         case 50:
           mensajeError = "Se ha producido una situación de error como consecuencia de problemas con la conexión a la BD";
           break;
-        case 71:
-          mensajeError = "No existe un libro con ese identificador";
-          break;
-        case 80:
-          mensajeError = "Se ha producido una situación de error en la BD al intentar insertar libro";
-          break;
-        case 81:
-          mensajeError = "Se ha producido una situación de error en la BD al intentar actualizar premiado";
-          break;
-        case 82:
-          mensajeError = "Se ha producido una situación de error en la BD al intentar eliminar libro";
-          break;
         case 83:
           mensajeError = "Se ha producido una situación de error en la BD al intentar consultar por identificador de libro";
           break;
@@ -103,9 +91,6 @@ public class Menu {
           break;
         case 85:
           mensajeError = "Se ha producido una situación de error en la BD al intentar consultar el número de libros";
-          break;
-        case 90:
-          mensajeError = "Se ha producido una situación de error en la BD al intentar consultar la relación de géneros";
           break;
       }
     } else {
@@ -158,8 +143,6 @@ public class Menu {
     Libro libro = consultarIdLibro(bf);
     if(libro != null){
       new LibrosNegocio().generarXMLid(libro);
-    }else {
-      System.out.println("NO EXISTE UN LIBRO CON EL IDENTIFICADOR INTRODUCIDO");
     }
   }
   
@@ -167,8 +150,6 @@ public class Menu {
     Libro libro = consultarIdLibro(bf);
     if(libro != null){
       new LibrosNegocio().generarPDFid(libro);
-    }else {
-      System.out.println("NO EXISTE UN LIBRO CON EL IDENTIFICADOR INTRODUCIDO");
     }
   }
 
