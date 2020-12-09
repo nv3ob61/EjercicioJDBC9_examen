@@ -71,6 +71,40 @@ public class Menu {
     } while (opcionTecleada != 0);
   }
 
+<<<<<<< HEAD
+=======
+  private void gestionarExcepcion(Exception excepcion) {
+    int codigoError = 0;
+    String mensajeError = "";
+
+    if (excepcion instanceof GenericaExcepcion) {
+      GenericaExcepcion genericaExcepcion = (GenericaExcepcion) excepcion;
+      codigoError = genericaExcepcion.getCodigoError();
+      switch (genericaExcepcion.getCodigoError()) {
+        case 50:
+          mensajeError = "Se ha producido una situación de error como consecuencia de problemas con la conexión a la BD";
+          break;
+        case 83:
+          mensajeError = "Se ha producido una situación de error en la BD al intentar consultar por identificador de libro";
+          break;
+        case 84:
+          mensajeError = "Se ha producido una situación de error en la BD al intentar consultar todos los libros";
+          break;
+        case 85:
+          mensajeError = "Se ha producido una situación de error en la BD al intentar consultar el número de libros";
+          break;
+      }
+    } else {
+      if (excepcion instanceof NumberFormatException) {
+        mensajeError = "La totalidad de los dígitos deben ser numéricos";
+      } else {
+        mensajeError = excepcion.getMessage();
+      }
+    }
+    System.out.println("Código de error: " + codigoError + "  -  " + mensajeError);
+  }
+
+>>>>>>> 26fd2a37335c80bc6eb55232d150103a56a7f8a0
   private void consultarPorIdLibro(BufferedReader bufferedReader) throws Exception {
     System.out.println("----------- CONSULTAR POR IDENTIFICADOR DE LIBRO -----------------");
     Libro libro = new Libro();
@@ -97,6 +131,7 @@ public class Menu {
   private void generarXMLid(BufferedReader bf) throws Exception {
     Libro libro = new Libro();
     System.out.print("identificador de libro a consultar : ");
+<<<<<<< HEAD
     libro.setIdLibro(bf.readLine());
     new LibrosNegocio().generarXMLid(libro);
   }
@@ -107,6 +142,30 @@ public class Menu {
     libro.setIdLibro(bf.readLine());
     new LibrosNegocio().generarPDFid(libro);
 
+=======
+    libro.setIdLibro(bufferedReader.readLine());
+    Libro libroObtenido = new LibrosNegocio().consultarPorIdLibro(libro);
+    if (libroObtenido != null) {
+      libro = libroObtenido;
+    } else {
+      System.out.println("NO EXISTE UN LIBRO CON EL IDENTIFICADOR INTRODUCIDO");
+    }
+    return libro;
+  }
+  
+  private void generarXMLid(BufferedReader bf) throws Exception{
+    Libro libro = consultarIdLibro(bf);
+    if(libro != null){
+      new LibrosNegocio().generarXMLid(libro);
+    }
+  }
+  
+  private void generarPDFid(BufferedReader bf) throws Exception{
+    Libro libro = consultarIdLibro(bf);
+    if(libro != null){
+      new LibrosNegocio().generarPDFid(libro);
+    }
+>>>>>>> 26fd2a37335c80bc6eb55232d150103a56a7f8a0
   }
 
   private void consultarTodos() throws Exception {

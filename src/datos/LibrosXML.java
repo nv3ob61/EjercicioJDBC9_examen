@@ -37,15 +37,15 @@ public class LibrosXML {
   
   //la ruta de XML_LISTADO por ejemplo:
   //C:\\Users\\nv3ob61\\LISTADO_LIBROS.xml
-  public static final String XML_LISTADO =   //add file
+  public static final String XML_LISTADO = "C:\\Users\\ciclom\\Desktop\\exportsServidor\\LISTADO_LIBROS.xml";   //add file
   
   //la ruta de XML_LIBRO por ejemplo:
   //C:\\Users\\nv3ob61\\LIBRO.xml
-  public static final String XML_LIBRO =   //add file
+  public static final String XML_LIBRO = "C:\\Users\\ciclom\\Desktop\\exportsServidor\\LIBRO.xml";  //add file
           
   //RUTA_FICHEROS es la carpeta donde se generan los ficheros:        
   //C:\\Users\\nv3ob61\\ficheros_libro\\
-  public static final String RUTA_FICHEROS =   //add folder
+  public static final String RUTA_FICHEROS = "C:\\Users\\ciclom\\Desktop\\exportsServidor\\";  //add folder
 
   private static final DateFormat DF = new SimpleDateFormat("yyyy-mm-dd");
 

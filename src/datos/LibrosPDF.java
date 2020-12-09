@@ -31,7 +31,7 @@ public class LibrosPDF {
 
   //DIRECTORIO_PDF es la carpeta donde se generan los ficheros:        
   //C:\\Users\\nv3ob61\\ficheros_libro\\
-  public static final String DIRECTORIO_PDF = //add folder
+  public static final String DIRECTORIO_PDF = "C:\\Users\\ciclom\\Desktop\\exportsServidor\\";//add folder
 
 
   public void generarPDF(List<Libro> listaLibros,
