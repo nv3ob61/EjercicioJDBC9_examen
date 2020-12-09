@@ -77,22 +77,75 @@ public class LibrosNegocio {
     return numFilas;
   }
 
-  public void generarPDF(List<Libro> listaLibros, 
-          ParametrosListado parametrosListado) throws Exception {
-    
-    new LibrosPDF().generarPDF(listaLibros, parametrosListado);
+  public void generarPDF() throws Exception {
+    Connection connection = null;
+    ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos();
+    List<Libro> listaLibros;
+
+    ParametrosListado parametrosListado = new ParametrosListado();
+    parametrosListado.setNumeroFilasPagina(10);
+
+    try {
+      connection = conexionBaseDatos.abrirConexion();
+      listaLibros = new LibrosDatos().consultarTodos(connection);
+      new LibrosPDF().generarPDF(listaLibros, parametrosListado);
+    } catch (Exception excepcion) {
+      throw excepcion;
+    } finally {
+      conexionBaseDatos.cerrarConexion(connection);
+    }
   }
-    
-  public void generarPDFid(Libro libro){
-    new LibrosPDF().generarPDFid(libro);
+
+  public void generarPDFid(Libro libro) throws Exception {
+    Connection connection = null;
+    Libro libroObtenido;
+    ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos();
+    try {
+      connection = conexionBaseDatos.abrirConexion();
+      libroObtenido = new LibrosDatos().consultarPorIdLibro(connection, libro);
+      new LibrosPDF().generarPDFid(libroObtenido);
+    } catch (Exception excepcion) {
+      throw excepcion;
+    } finally {
+      conexionBaseDatos.cerrarConexion(connection);
+    }
+
   }
-  
-  public void generarXMLtodos(List<Libro> listaLibros){
-    new LibrosXML().generarXML(listaLibros);
+
+  public void generarXMLtodos() throws Exception {
+    Connection connection = null;
+    ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos();
+    List<Libro> listaLibros;
+
+    ParametrosListado parametrosListado = new ParametrosListado();
+    parametrosListado.setNumeroFilasPagina(10);
+
+    try {
+      connection = conexionBaseDatos.abrirConexion();
+      listaLibros = new LibrosDatos().consultarTodos(connection);
+      new LibrosXML().generarXML(listaLibros);
+    } catch (Exception excepcion) {
+      throw excepcion;
+    } finally {
+      conexionBaseDatos.cerrarConexion(connection);
+    }
+
   }
-  
-  public void generarXMLid(Libro libro){
-    new LibrosXML().generarXMLid(libro);
+
+  public void generarXMLid(Libro libro) throws Exception {
+    Connection connection = null;
+    Libro libroObtenido;
+    ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos();
+    try {
+      connection = conexionBaseDatos.abrirConexion();
+      libroObtenido = new LibrosDatos().consultarPorIdLibro(connection, libro);
+      new LibrosXML().generarXMLid(libroObtenido);
+    } catch (Exception excepcion) {
+      throw excepcion;
+    } finally {
+      conexionBaseDatos.cerrarConexion(connection);
+    }
+
   }
 
 }
